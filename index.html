@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8'>
+  <title>HTFOX Calculator</title>
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css'
+        integrity='sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm' crossorigin='anonymous'>
+
+</head>
+<body onload='startTime()'>
+<div class='section card'>
+  <div class='main d-flex justify-content-center '>
+    <h1 class='name'>HTFOX CALCULATOR</h1>
+  </div>
+  <div class='Clock d-flex flex-row justify-content-center'>
+    <div id='hours'></div>
+    <div><p>:
+      <p></div>
+    <div id='minutes' class='minute'></div>
+    <div><p>:
+      <p></div>
+    <div id='seconds' class='second'></div>
+
+    <div id='ampm'></div>
+  </div>
+  <div class='table d-flex justify-content-center flex-column align-items-center'>
+    <TABLE border='1'
+           summary='This table gives some statistics about fruit
+                   flies: average height and weight, and percentage
+                   with red eyes (for both males and females).'>
+
+      <TR>
+        <TH>
+        <TH>EUREXGII
+        <TH>SFT
+        <TH>FEI
+      <TR>
+        <TH>LOT
+        <TD id='lot_eurexgii'>
+        <TD id='lot_sft'>0.003
+        <TD id='lot_fei'>40%
+      <TR>
+        <TH>FEE
+        <TD id='fee_eurexgii'>
+        <TD id='fee_sft'>0.003
+        <TD id='fee_fei'>40%
+
+      <TR>
+        <TH colspan='2'>ENTER VALUE
+        <TH><input id='enter_value' type='text'>
+        <TH>$
+      <TR>
+        <TH>LOT
+        <TD id='lot_eurexgii_1'>
+        <TD id='lot_sft_1'>0.003
+        <TD id='lot_fei_1'>40%
+      <TR>
+        <TH>FEE
+        <TD id='fee_eurexgii_1'>
+        <TD id='fee_sft_1'>0.003
+        <TD id='fee_fei_1'>40%
+      <TR>
+        <TH>1.5x
+        <TD id='1_eurexgii'>
+        <TD id='fee_sft_1x'>0.003
+        <TD id='fee_fei_1x'>40%
+      <TR>
+        <TH>1.7x
+        <TD id='11_eurexgii'>
+        <TD id='fee_sft_11'>0.003
+        <TD id='fee_fei_11'>40%
+      <TR>
+        <TH>2x
+        <TD id='2_eurexgii'>
+        <TD id='fee_sft_2'>0.003
+        <TD id='fee_fei_2'>40%-->
+    </TABLE>
+    <button id='foo' class='d-flex ' >
+      <div id='minutes1' class='minute'></div>
+      <div><p>:
+        <p></div>
+      <div id='seconds1' class='second'></div>
+    </button>
+  </div>
+</div>
+<section id='frame' class='section card frame'>
+  <iframe src='http://app.htfox.hk/#/' title='description' height='800px' width='100%'></iframe>
+</section>
+
+
+</body>
+<script>
+  var newHandle = function(event) {
+
+    console.log('CALLED')
+    if (document.getElementById('frame').style.display === 'none') {
+      document.getElementById('frame').style.display = 'block';
+      console.log(document.getElementById('frame').style.display);
+    } else {
+      document.getElementById('frame').style.display = 'none';
+      console.log(document.getElementById('frame').style.display + 'else');
+
+    }
+  };
+  document.querySelector('#foo').addEventListener('click', newHandle
+    , false);
+
+
+  function startTime() {
+    const today = new Date();
+    let h = today.getHours();
+    let m = today.getMinutes();
+    let s = today.getSeconds();
+    let eurexgii = 838;
+    let sft = 860;
+    let fei = 1280;
+    let fee_eurex = 38;
+    let fee_stf = 60;
+    let fee_fei = 80;
+
+    var ampm = h >= 12 ? 'pm' : 'am';
+    m = checkTime(m);
+    s = checkTime(s);
+    document.getElementById('hours').innerHTML = h;
+    document.getElementById('minutes').innerHTML = m;
+    document.getElementById('seconds').innerHTML = s;
+    document.getElementById('minutes1').innerHTML = m;
+    document.getElementById('seconds1').innerHTML = s;
+    document.getElementById('ampm').innerHTML = ampm;
+    document.getElementById('lot_eurexgii').innerText = eurexgii;
+    document.getElementById('lot_sft').innerText = sft;
+    document.getElementById('lot_fei').innerText = fei;
+    document.getElementById('fee_eurexgii').innerText = fee_eurex;
+    document.getElementById('fee_sft').innerText = fee_stf;
+    document.getElementById('fee_fei').innerText = fee_fei;
+    let enter_value = document.getElementById('enter_value').value;
+    document.getElementById('lot_eurexgii_1').innerText = (enter_value / eurexgii).toFixed(3);
+    document.getElementById('lot_sft_1').innerText = (enter_value / sft).toFixed(3);
+    document.getElementById('lot_fei_1').innerText = (enter_value / fei).toFixed(3);
+
+    //fee
+    document.getElementById('fee_eurexgii_1').innerText = (fee_eurex * document.getElementById('lot_eurexgii_1').innerText).toFixed(2);
+    document.getElementById('fee_sft_1').innerText = (fee_stf * document.getElementById('lot_sft_1').innerText).toFixed(2);
+    document.getElementById('fee_fei_1').innerText = (fee_fei * document.getElementById('lot_fei_1').innerText).toFixed(2);
+    //1.x
+    document.getElementById('1_eurexgii').innerText = (1.5 * document.getElementById('fee_eurexgii_1').innerText).toFixed(2);
+    document.getElementById('fee_sft_1x').innerText = (1.5 * document.getElementById('fee_sft_1').innerText).toFixed(2);
+    document.getElementById('fee_fei_1x').innerText = (1.5 * document.getElementById('fee_fei_1').innerText).toFixed(2);
+    //2x
+    document.getElementById('11_eurexgii').innerText = (1.7 * document.getElementById('fee_eurexgii_1').innerText).toFixed(2);
+    document.getElementById('fee_sft_11').innerText = (1.7 * document.getElementById('fee_sft_1').innerText).toFixed(2);
+    document.getElementById('fee_fei_11').innerText = (1.7 * document.getElementById('fee_fei_1').innerText).toFixed(2);
+    //3x
+    document.getElementById('2_eurexgii').innerText = (2 * document.getElementById('fee_eurexgii_1').innerText).toFixed(2);
+    document.getElementById('fee_sft_2').innerText = (2 * document.getElementById('fee_sft_1').innerText).toFixed(2);
+    document.getElementById('fee_fei_2').innerText = (2 * document.getElementById('fee_fei_1').innerText).toFixed(2);
+    setTimeout(startTime, 1000);
+  }
+
+  function checkTime(i) {
+    if (i < 10) {
+      i = '0' + i;
+    }
+    ;  // add zero in front of numbers < 10
+    return i;
+  }
+</script>
+<style>
+    .card {
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+        padding: 1rem;
+        margin: 2rem auto;
+        max-width: 40rem;
+    }
+    .name{
+        font-family: fantasy;
+    }
+    .Clock{
+    div{
+        font-size: 60px;
+
+    }
+    .minute{
+        font-weight: 700;
+    }
+    .second{
+        font-weight: 700;
+    }
+    }
+    .frame{
+        display: block;
+    }
+    button{
+        width: 300px;
+        display: flex;
+        margin-top: 10px;
+        justify-content: center;
+
+    div{
+        font-size: 40px;
+    }
+    }
+
+    button,
+    a {
+        text-decoration: none;
+    //padding: 0.75rem 1.5rem;
+    //font: inherit;
+        background-color: #3a0061;
+        border: 1px solid #3a0061;
+        color: white;
+        cursor: pointer;
+        border-radius: 30px;
+        margin-right: 0.5rem;
+        display: inline-block;
+    }
+
+    a:hover,
+    a:active,
+    button:hover,
+    button:active {
+        background-color: #270041;
+        border-color: #270041;
+    }
+
+    .flat {
+        background-color: transparent;
+        color: #3a0061;
+        border: none;
+    }
+
+    .outline {
+        background-color: transparent;
+        border-color: #270041;
+        color: #270041;
+    }
+
+    .flat:hover,
+    .flat:active,
+    .outline:hover,
+    .outline:active {
+        background-color: #edd2ff;
+    }
+</style>
+<script src='https://code.jquery.com/jquery-3.2.1.slim.min.js'
+        integrity='sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN'
+        crossorigin='anonymous'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js'
+        integrity='sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q'
+        crossorigin='anonymous'></script>
+<script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js'
+        integrity='sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl'
+        crossorigin='anonymous'></script>
+</html>
